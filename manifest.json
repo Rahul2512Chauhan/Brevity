@@ -1,0 +1,23 @@
+{
+  "manifest_version": 3,
+  "name": "Smart Reading Companion",
+  "version": "0.0.1",
+  "description": "Summarize, simplify, translate, and quiz web pages offline.",
+  "permissions": ["contextMenus", "storage", "activeTab", "scripting"],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "action": {
+    "default_popup": "sidebar.html",
+    "default_icon": {
+      "16": "icon16.png",
+      "48": "icon48.png",
+      "128": "icon128.png"
+    }
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
