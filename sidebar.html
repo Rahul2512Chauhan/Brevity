@@ -1,14 +1,26 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <title>Smart Reading Companion</title>
+  <meta charset="UTF-8">
+  <title>Summary Popup</title>
+  <style>
+    body { font-family: Arial, sans-serif; padding: 10px; }
+    #output { white-space: pre-wrap; margin-top: 10px; }
+    button { margin: 5px; }
+  </style>
 </head>
 <body>
   <h2>Smart Reading Companion</h2>
-  <textarea id="inputText" placeholder="Paste text or select from page"></textarea>
-  <br/>
-  <button id="summarizeBtn">Summarize</button>
-  <div id="output"></div>
+
+  <!-- Add a button to satisfy user activation requirement -->
+  <button id="start-btn">Click to summarize selected text</button>
+
+  <div>
+    <button id="keypoints-btn">Key Points</button>
+    <button id="tldr-btn">TL;DR</button>
+  </div>
+
+  <div id="output">Select text on the page, right-click → "Summarize Text"</div>
 
   <script type="module" src="sidebar.js"></script>
 </body>
