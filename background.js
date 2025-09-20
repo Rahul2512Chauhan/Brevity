@@ -10,9 +10,12 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "summarize") {
     chrome.scripting.executeScript({
       target: { tabId: tab.id },
-      function: () => {
-        alert("Selected text will be summarized here!");
-      }
+      function: (selectedText) => {
+        // Send selected text to sidebar (simplified)
+        const sidebar = document.getElementById("output");
+        if (sidebar) sidebar.innerText = selectedText;
+      },
+      args: [info.selectionText]
     });
   }
 });
