@@ -4,21 +4,35 @@ chrome.runtime.onInstalled.addListener(() => {
     title: "Summarize Text",
     contexts: ["selection"]
   });
+
+  chrome.contextMenus.create({
+    id: "simplify-text",
+    title: "Simplify Text",
+    contexts: ["selection"]
+  });
 });
 
-// background.js
 chrome.contextMenus.onClicked.addListener((info, tab) => {
-  if (info.menuItemId === "summarize-text") {
-    const selectedText = info.selectionText;
-    chrome.storage.local.set({ selectedText });
+  const selectedText = info.selectionText;
+  if (!selectedText) return;
 
-    // Open sidebar.html as a popup window
+  chrome.storage.local.set({ selectedText });
+
+  if (info.menuItemId === "summarize-text") {
     chrome.windows.create({
-      url: chrome.runtime.getURL("sidebar.html"),
+      url: chrome.runtime.getURL("sidebar.html?action=summarize"),
+      type: "popup",
+      width: 400,
+      height: 600
+    });
+  }
+
+  if (info.menuItemId === "simplify-text") {
+    chrome.windows.create({
+      url: chrome.runtime.getURL("sidebar.html?action=simplify"),
       type: "popup",
       width: 400,
       height: 600
     });
   }
 });
-
