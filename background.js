@@ -10,7 +10,14 @@ chrome.runtime.onInstalled.addListener(() => {
     title: "Simplify Text",
     contexts: ["selection"]
   });
+
+  chrome.contextMenus.create({
+    id: "transle-text",
+    title: "Translate Text",
+    contexts: ["selection"]
+  });
 });
+
 
 chrome.contextMenus.onClicked.addListener((info, tab) => {
   const selectedText = info.selectionText;
@@ -30,6 +37,14 @@ chrome.contextMenus.onClicked.addListener((info, tab) => {
   if (info.menuItemId === "simplify-text") {
     chrome.windows.create({
       url: chrome.runtime.getURL("sidebar.html?action=simplify"),
+      type: "popup",
+      width: 400,
+      height: 600
+    });
+  }
+  if (info.menuItemId === "transle-text") {
+    chrome.windows.create({
+      url: chrome.runtime.getURL("sidebar.html?action=translate"),
       type: "popup",
       width: 400,
       height: 600
