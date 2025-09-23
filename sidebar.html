@@ -2,26 +2,74 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Summary Popup</title>
+  <title>Smart Reading Companion</title>
   <style>
-    body { font-family: Arial, sans-serif; padding: 10px; }
-    #output { white-space: pre-wrap; margin-top: 10px; }
-    button { margin: 5px; }
+    body {
+      font-family: Arial, sans-serif;
+      padding: 15px;
+      margin: 0;
+    }
+    h2 {
+      font-size: 18px;
+      margin-bottom: 15px;
+      color: #333;
+    }
+    .hidden { display: none !important; }
+    button {
+      margin: 5px;
+      padding: 10px 15px;
+      background: #4285f4;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      font-size: 14px;
+    }
+    button:hover { background: #3367d6; }
+    #selected-text {
+      margin-top: 10px;
+      padding: 10px;
+      background: #fafafa;
+      border: 1px solid #ddd;
+      border-radius: 4px;
+      white-space: pre-wrap;
+      font-size: 13px;
+    }
+    #output {
+      white-space: pre-wrap;
+      margin-top: 15px;
+      padding: 12px;
+      background: #f5f5f5;
+      border-radius: 4px;
+      min-height: 100px;
+    }
   </style>
 </head>
 <body>
-  <h2>Smart Reading Companion</h2>
-
-  <!-- Add a button to satisfy user activation requirement -->
-  <button id="start-btn">Click to summarize selected text</button>
-
-  <div>
-    <button id="keypoints-btn">Key Points</button>
-    <button id="tldr-btn">TL;DR</button>
+  <!-- SUMMARIZE SECTION -->
+  <div id="summarize-section">
+    <h2>Text Summarizer</h2>
+    <button id="start-btn">Start Summarizing</button>
+    <div>
+      <button id="keypoints-btn">Key Points</button>
+      <button id="tldr-btn">TL;DR</button>
+    </div>
   </div>
 
-  <div id="output">Select text on the page, right-click → "Summarize Text"</div>
+  <!-- SIMPLIFY SECTION -->
+  <div id="simplify-section" class="hidden">
+    <h2>Text Simplifier</h2>
+    <button id="kid-level-btn">Kid Level</button>
+    <button id="student-level-btn">Student Level</button>
+    <button id="expert-level-btn">Expert Level</button>
+  </div>
 
-  <script type="module" src="sidebar.js"></script>
+  <h3>Selected Text:</h3>
+  <div id="selected-text">Loading...</div>
+
+  <div id="output"></div>
+
+  <!-- ✅ external script -->
+<script type="module" src="sidebar.js"></script>
 </body>
 </html>
