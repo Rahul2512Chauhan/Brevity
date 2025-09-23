@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Smart Reading Companion</title>
@@ -9,12 +10,17 @@
       padding: 15px;
       margin: 0;
     }
+
     h2 {
       font-size: 18px;
       margin-bottom: 15px;
       color: #333;
     }
-    .hidden { display: none !important; }
+
+    .hidden {
+      display: none !important;
+    }
+
     button {
       margin: 5px;
       padding: 10px 15px;
@@ -25,7 +31,11 @@
       cursor: pointer;
       font-size: 14px;
     }
-    button:hover { background: #3367d6; }
+
+    button:hover {
+      background: #3367d6;
+    }
+
     #selected-text {
       margin-top: 10px;
       padding: 10px;
@@ -35,6 +45,7 @@
       white-space: pre-wrap;
       font-size: 13px;
     }
+
     #output {
       white-space: pre-wrap;
       margin-top: 15px;
@@ -45,6 +56,7 @@
     }
   </style>
 </head>
+
 <body>
   <!-- SUMMARIZE SECTION -->
   <div id="summarize-section">
@@ -64,12 +76,31 @@
     <button id="expert-level-btn">Expert Level</button>
   </div>
 
+  <div id="translate-section" class="hidden">
+    <h2>Translator</h2>
+
+    <label for="target-lang">Translate To:</label>
+    <select id="target-lang">
+      <option value="en">English</option>
+      <option value="hi">Hindi</option>
+      <option value="fr">French</option>
+      <option value="es">Spanish</option>
+      <option value="de">German</option>
+      <option value="zh-CN">Chinese (Simplified)</option>
+      <option value="ar">Arabic</option>
+    </select>
+
+    <button id="translate-btn">Translate</button>
+  </div>
+
+
   <h3>Selected Text:</h3>
   <div id="selected-text">Loading...</div>
 
   <div id="output"></div>
 
   <!-- ✅ external script -->
-<script type="module" src="sidebar.js"></script>
+  <script type="module" src="sidebar.js"></script>
 </body>
+
 </html>

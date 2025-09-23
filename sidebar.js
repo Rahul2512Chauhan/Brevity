@@ -1,6 +1,6 @@
 import { summarizeText } from './api/summarizer.js';
 import { makeKidFriendly, makeExpertLevel } from './api/rewriter.js';
-
+import { translateText } from "./api/translator.js"
 const outputDiv = document.getElementById("output");
 const selectedTextDiv = document.getElementById("selected-text");
 
@@ -16,14 +16,21 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const summarizeSection = document.getElementById("summarize-section");
   const simplifySection = document.getElementById("simplify-section");
-
+  const translateSection = document.getElementById("translate-section");
   if (action === "simplify") {
     summarizeSection.classList.add("hidden");
     simplifySection.classList.remove("hidden");
+    translateSection?.classList.add("hidden");
     outputDiv.innerText = "Choose a reading level to simplify your text";
+  } else if (action === "translate") {
+    summarizeSection.classList.add("hidden");
+    simplifySection.classList.add("hidden");
+    translateSection?.classList.remove("hidden");
+    outputDiv.innerText = "Ready to translate your selected text";
   } else {
     summarizeSection.classList.remove("hidden");
     simplifySection.classList.add("hidden");
+    translateSection?.classList.add("hidden");
     outputDiv.innerText = "Ready to summarize your selected text";
   }
 
@@ -75,7 +82,29 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     }
   }
+
+  if (action === "translate") {
+    document.getElementById("translate-btn").addEventListener("click", async () => {
+      outputDiv.textContent = "Translating...";
+
+      chrome.storage.local.get("selectedText", async ({ selectedText }) => {
+        if (!selectedText) {
+          outputDiv.textContent = "No text selected.";
+          return;
+        }
+
+        const targetLang = document.getElementById("target-lang").value;
+
+        const result = await translateText(selectedText, targetLang);
+        outputDiv.textContent = result;
+      });
+    });
+  }
+
 });
+
+
+
 
 // ---------------- Helper Functions ----------------
 
